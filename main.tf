@@ -1,8 +1,8 @@
 
 #create instance EC2
 resource "aws_instance" "kubernetes" {
-  ami           = "ami-0756283460878b818"  
-  instance_type = "t2.micro"
+  ami                    = "ami-0756283460878b818"
+  instance_type          = "t2.micro"
   key_name               = aws_key_pair.key_pair.key_name
   vpc_security_group_ids = [aws_security_group.sg_kube.id]
 
@@ -38,8 +38,8 @@ resource "aws_security_group" "sg_kube" {
   name        = "sg_kube"
   description = "Security group for EC2"
 
-  
- ingress {
+
+  ingress {
     description      = "HTTPS"
     from_port        = 443
     to_port          = 443
@@ -73,7 +73,7 @@ resource "aws_security_group" "sg_kube" {
 
 module "vpc" {
   source = "./modules/vpc"
-  
+
 }
 
 
